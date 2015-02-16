@@ -4,16 +4,19 @@ from . import db
 users = {}
 
 class User(db.Model, UserMixin):
-    def __init__(self, name):
-        self.id = name
-        self.name = name
-        self.addToUsers()
+    # User Email information
+    email = db.Column(db.String(255), nullable=False, unique=True, primary_key=True)
 
-    def get_id(self):
-        return self.id
+    # User Authentication information
+    # Don't worry, it's hashed and salted first
+    password = db.Column(db.String(255), nullable=False, default='')
+    resetPasswordToken = db.Column(db.String(100), nullable=False, default='')
 
-    def addToUsers(self):
-        users[self.get_id()] = self
 
-    def is_authenticated(self):
-        return True
+    # User information
+    isEnabled = db.Column(db.Boolean(), nullable=False, default=True)
+    firstName = db.Column(db.String(50), nullable=False, default='')
+    lastName = db.Column(db.String(50), nullable=False, default='')
+
+    def isActive(self):
+        return self.isEnabled

@@ -2,6 +2,9 @@
 from flask import request, flash, redirect, url_for
 from flask.ext.login import login_user, current_user, login_required
 
+# For debugging
+import pprint
+
 from . import app
 from . import templateutil
 from .user import User
@@ -20,9 +23,23 @@ def about():
 def user():
     return templateutil.render('user.html', pageTitle=current_user.get_id())
 
+
+@app.route('/createuser', methods=['GET', 'POST'])
+def createuser():
+    if request.method == "POST":
+        email = request.form["email"]
+        password = request.form["password"]
+        firstName = request.form["firstName"]
+        lastName = request.form["lastName"]
+
+        newUser = User(email=email, password=password,
+                       firstName=firstName, lastName=lastName)
+
+    return templateutil.render('logincreateuser.html', pageTitle="Create User")
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    print(request.form)
     # login and validate the user...
     if request.method == "POST":
         user = User(request.form["email"])
@@ -31,5 +48,4 @@ def login():
         flash("Logged in successfully.")
         return redirect(request.args.get("next") or url_for("index"))
 
-    return templateutil.render('login.html', pageTitle="Login")
-            #extraJsFiles=["js/login.js"])
+    return templateutil.render('logincreateuser.html', pageTitle="Login")
