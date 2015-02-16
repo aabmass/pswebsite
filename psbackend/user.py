@@ -1,8 +1,9 @@
 from flask.ext.login import UserMixin
+from . import db
 
 users = {}
 
-class User(UserMixin):
+class User(db.Model, UserMixin):
     def __init__(self, name):
         self.id = name
         self.name = name
