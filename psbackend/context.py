@@ -3,5 +3,6 @@
 ##
 # @brief A dictionary of global context variables
 projectVars = {
-    "projectName":    "PosterScores"
+    "projectName":      "PosterScores",
+    "menus":            [],
 }

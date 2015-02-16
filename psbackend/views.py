@@ -1,9 +1,11 @@
 ########## Module with all of our views ##########
-from psbackend import templateutil
+from flask import url_for
+
 from psbackend import app
+from . import templateutil
 
 @app.route('/')
-@app.route('/index.html')
+@app.route('/index')
 def index():
     return templateutil.render('index.html')
 

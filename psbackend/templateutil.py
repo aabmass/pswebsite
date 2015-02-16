@@ -1,6 +1,6 @@
 ########## Utils for rendering the templates ##########
 import flask
-from psbackend import context
+from . import context
 
 ## Use this in place of flask.render_template for the project
 def render(templateName, **kwargs):
