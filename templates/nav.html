@@ -7,6 +7,10 @@
             {% for m in projVars.menus %}
                 <li><a href="{{ url_for(m.routeFuncName) }}">{{ m.name }}</a></li>
             {% endfor %}
+
+            {% if current_user.is_authenticated() %}
+                <li><a href="{{ url_for("index") }}">{{ current_user.get_id() }}</a></li>
+            {% endif %}
         </ul>
     </nav>
 </header>
