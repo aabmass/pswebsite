@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import os
 from psbackend import app
 from psbackend.user import User
 from psbackend.user import users
@@ -17,5 +18,8 @@ def load_user(userId):
         user = users[userId]
     return user
 
-app.debug = True
-app.run()
+if ('PRODUCTION' in os.environ and
+        os.environ['PRODUCTION'] == 'TRUE'):
+    app.run(debug=False, host='0.0.0.0')
+else:
+    app.run(debug=True)
