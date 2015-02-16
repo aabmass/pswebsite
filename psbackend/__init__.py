@@ -4,9 +4,8 @@ app = Flask(__name__)
 
 from . import views
 from . import context
-from .menus import Menu
+from . import menus
 
 # Create the menus
-menus = context.projectVars["menus"]
-menus.append(Menu("Home", "index"))
+menus.createApplicationMenus()
 

@@ -21,3 +21,11 @@ class Menu:
     
     def addToContext(self):
         context.projectVars["menus"].append(self)
+
+def createApplicationMenus():
+    menus = context.projectVars["menus"]
+
+    menus.append(Menu("Home", "index"))
+    menus.append(Menu("About", "about"))
+    menus.append(Menu("Login", "login"))
+
