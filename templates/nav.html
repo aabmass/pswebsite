@@ -8,8 +8,9 @@
                 <li><a href="{{ url_for(m.routeFuncName) }}">{{ m.name }}</a></li>
             {% endfor %}
 
-            {% if current_user.is_authenticated() %}
-                <li><a href="{{ url_for("index") }}">{{ current_user.get_id() }}</a></li>
+            {# User Menu #}
+            {% if userMenu %}
+                <li><a href="{{ url_for(userMenu.routeFuncName) }}">{{ userMenu.name }}</a></li>
             {% endif %}
         </ul>
     </nav>
