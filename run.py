@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
-from flask import Flask
-import views
+from psbackend import app
 
-app = Flask(__name__)
-
-if __name__ == '__main__':
-    app.debug = True
-    app.run()
+app.debug = True
+app.run()
