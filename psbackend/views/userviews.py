@@ -1,10 +1,14 @@
 from flask import request, flash, redirect, url_for
-from flask.ext.login import login_user, logout_user, login_required
+from flask.ext.login import login_user, logout_user, login_required, current_user
 
 from psbackend import app
 from psbackend import templateutil
 from psbackend.models.user import *
 
+@app.route('/user')
+@login_required
+def user():
+    return templateutil.render('user.html', pageTitle=current_user.get_id())
 
 @app.route('/user/create', methods=['GET', 'POST'])
 def createuser():
