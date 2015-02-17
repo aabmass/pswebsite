@@ -4,6 +4,8 @@ from werkzeug import security
 from psbackend import db
 from psbackend import loginManager
 
+import datetime
+
 class User(db.Model, UserMixin):
     # User Email information
     email = db.Column(db.String(255), nullable=False, unique=True, primary_key=True)
@@ -17,7 +19,7 @@ class User(db.Model, UserMixin):
     isEnabled = db.Column(db.Boolean(), nullable=False, default=True)
     firstName = db.Column(db.String(50), nullable=False, default='')
     lastName = db.Column(db.String(50), nullable=False, default='')
-    registeredOn = db.Column(db.Date(), nullable=False, default=db.DateTime)
+    registeredOn = db.Column(db.DateTime, nullable=False, default=datetime.datetime.now())
 
     def __init__(self, email, password, firstName, lastName):
         self.email = email
