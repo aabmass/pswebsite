@@ -1218,3 +1218,8 @@
 		.grid-demo .row.flush > div:last-child span {
 			border-radius: 0 4px 4px 0;
 		}
+
+        /* Added css for posterscores */
+        p.error {
+            color: red;
+        }
