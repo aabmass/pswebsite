@@ -6,7 +6,7 @@ from psbackend import templateutil
 from psbackend.models.user import *
 
 
-@app.route('/createuser', methods=['GET', 'POST'])
+@app.route('/user/create', methods=['GET', 'POST'])
 def createuser():
     if request.method == "GET":
         return templateutil.render('logincreateuser.html', pageTitle="Create User")
@@ -27,7 +27,7 @@ def createuser():
 
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/user/login', methods=['GET', 'POST'])
 def login():
     # login and validate the user...
     if request.method == "GET":
@@ -46,7 +46,7 @@ def login():
         return templateutil.render('logincreateuser.html', pageTitle="Login",
                                     wrongPassword=True)
 
-@app.route('/logout')
+@app.route('/user/logout')
 def logout():
     # logout the current user
     logout_user()
