@@ -1,6 +1,6 @@
 ########## Module with all of our views ##########
 from flask import request, flash, redirect, url_for
-from flask.ext.login import login_user, current_user, login_required
+from flask.ext.login import login_user, logout_user, current_user, login_required
 
 from . import app
 from . import templateutil
@@ -23,31 +23,32 @@ def user():
 
 @app.route('/createuser', methods=['GET', 'POST'])
 def createuser():
-    if request.method == "POST":
-        email = request.form["email"]
-        password = request.form["password"]
-        firstName = request.form["firstName"]
-        lastName = request.form["lastName"]
+    if request.method == "GET":
+        return templateutil.render('logincreateuser.html', pageTitle="Create User")
 
-        newUser = User(email=email, password=password,
-                       firstName=firstName, lastName=lastName)
+    email = request.form["email"]
+    password = request.form["password"]
+    firstName = request.form["firstName"]
+    lastName = request.form["lastName"]
 
-        # Make sure validated first...
-        newUser.save()
-        login_user(newUser)
-        flash("Logged in successfully.")
-        return redirect(request.args.get("next") or url_for("index"))
+    user = User(email=email, password=password,
+            firstName=firstName, lastName=lastName)
 
-    return templateutil.render('logincreateuser.html', pageTitle="Create User")
+    # Make sure validated first...
+    user.save()
+    login_user(user)
+    flash("Logged in successfully.")
+    return redirect(request.args.get("next") or url_for("index"))
+
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     # login and validate the user...
-    if request.method == "POST":
-        user = loadUser(request.form["email"])
-        login_user(user)
-        flash("Logged in successfully.")
-        return redirect(request.args.get("next") or url_for("index"))
+    if request.method == "GET":
+        return templateutil.render('logincreateuser.html', pageTitle="Login")
 
-    return templateutil.render('logincreateuser.html', pageTitle="Login")
+    user = loadUser(request.form["email"])
+    login_user(user)
+    flash("Logged in successfully.")
+    return redirect(request.args.get("next") or url_for("index"))
