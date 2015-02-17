@@ -17,6 +17,7 @@ class User(db.Model, UserMixin):
     isEnabled = db.Column(db.Boolean(), nullable=False, default=True)
     firstName = db.Column(db.String(50), nullable=False, default='')
     lastName = db.Column(db.String(50), nullable=False, default='')
+    registeredOn = db.Column(db.Date(), nullable=False, default=db.DateTime)
 
     def __init__(self, email, password, firstName, lastName):
         self.email = email
@@ -34,11 +35,17 @@ class User(db.Model, UserMixin):
     def checkPassword(self, password):
         security.check_password_hash(self.passwordHash, password)
 
+    def is_authenticated(self):
+        return True
+
+    def is_anonymous(self):
+        return False
+
     def is_active(self):
-        return self.isEnabled
+        return True
 
     def get_id(self):
-        return self.email
+        return str(self.email)
 
     def save(self):
         db.session.add(self)

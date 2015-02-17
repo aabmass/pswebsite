@@ -6,9 +6,6 @@ import os
 
 ## Flask init
 app = Flask(__name__)
-
-
-
 app.secret_key = "ROOISMYROOANDDUCKISDUCK"
 
 ## DB Init
@@ -19,6 +16,7 @@ db = SQLAlchemy(app)
 
 loginManager = LoginManager()
 loginManager.init_app(app)
+loginManager.login_view = "login"
 
 from .models.user import User
 
