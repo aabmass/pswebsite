@@ -5,12 +5,29 @@
         <ul>
             {# TODO Also iterate through submenus #}
             {% for m in projVars.menus %}
-                <li><a href="{{ url_for(m.routeFuncName) }}">{{ m.name }}</a></li>
+                <li><a href="{{ url_for(m.routeFuncName) }}">{{ m.name }}</a>
+                {% if m.submenus %}
+                    <ul>
+                        {% for subm in m.submenus %}
+                            <li><a href="{{ url_for(subm.routeFuncName) }}">{{ subm.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                </li>
             {% endfor %}
+            
 
             {# User Menu #}
             {% if userMenu %}
-                <li><a href="{{ url_for(userMenu.routeFuncName) }}">{{ userMenu.name }}</a></li>
+                <li><a href="{{ url_for(userMenu.routeFuncName) }}">{{ userMenu.name }}</a>
+                {% if userMenu.submenus %}
+                    <ul>
+                        {% for subm in userMenu.submenus %}
+                            <li><a href="{{ url_for(subm.routeFuncName) }}">{{ subm.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                </li>
             {% endif %}
         </ul>
     </nav>

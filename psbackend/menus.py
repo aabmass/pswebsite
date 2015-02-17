@@ -39,6 +39,14 @@ class Menu:
     def routeFuncName(self, routeFuncName):
         self._routeFuncName = routeFuncName
 
+    @property
+    def submenus(self):
+        return self._submenus
+
+    @submenus.setter
+    def submenus(self, subs):
+        self._submenus = subs
+
 class UserMenu(Menu):
     def __init__(self, name, routeFuncName, user, submenus=None):
         super().__init__(name, routeFuncName, submenus)
