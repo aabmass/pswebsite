@@ -1,24 +1,10 @@
-########## Module with all of our views ##########
 from flask import request, flash, redirect, url_for
-from flask.ext.login import login_user, logout_user, current_user, login_required
+from flask.ext.login import login_user, logout_user, login_required
 
-from . import app
-from . import templateutil
-from .models.user import *
+from psbackend import app
+from psbackend import templateutil
+from psbackend.models.user import *
 
-@app.route('/')
-@app.route('/index')
-def index():
-    return templateutil.render('index.html', pageTitle="Home")
-
-@app.route('/about')
-def about():
-    return templateutil.render('about.html', pageTitle="About")
-
-@app.route('/user')
-@login_required
-def user():
-    return templateutil.render('user.html', pageTitle=current_user.get_id())
 
 @app.route('/createuser', methods=['GET', 'POST'])
 def createuser():
