@@ -15,17 +15,46 @@ class Menu:
     #
     # @return 
     def __init__(self, name, routeFuncName, submenus=None):
-        self.name = name
-        self.routeFuncName = routeFuncName
-        self.submenus = submenus
+        self._name = name
+        self._routeFuncName = routeFuncName
+        self._submenus = submenus
     
     def addToContext(self):
         context.projectVars["menus"].append(self)
+
+    # Properties
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        self._name = name
+
+    @property
+    def routeFuncName(self):
+        return self._routeFuncName
+
+    @routeFuncName.setter
+    def routeFuncName(self, routeFuncName):
+        self._routeFuncName = routeFuncName
+
+class UserMenu(Menu):
+    def __init__(self, name, routeFuncName, user, submenus=None):
+        super().__init__(name, routeFuncName, submenus)
+        self.user = user
+
+        # Change the names if we have auth
+        if self.isAuthenticated():
+            self.name = self.user.get_id()
+            self.routeFuncName = "user"
+
+    def isAuthenticated(self):
+        return self.user.is_authenticated()
 
 def createApplicationMenus():
     menus = context.projectVars["menus"]
 
     menus.append(Menu("Home", "index"))
     menus.append(Menu("About", "about"))
-    menus.append(Menu("Login", "login"))
 

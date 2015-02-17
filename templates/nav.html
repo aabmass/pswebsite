@@ -7,6 +7,11 @@
             {% for m in projVars.menus %}
                 <li><a href="{{ url_for(m.routeFuncName) }}">{{ m.name }}</a></li>
             {% endfor %}
+
+            {# User Menu #}
+            {% if userMenu %}
+                <li><a href="{{ url_for(userMenu.routeFuncName) }}">{{ userMenu.name }}</a></li>
+            {% endif %}
         </ul>
     </nav>
 </header>
