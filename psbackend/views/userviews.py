@@ -1,12 +1,16 @@
 from flask import request, flash, redirect, url_for
-from flask.ext.login import login_user, logout_user, login_required
+from flask.ext.login import login_user, logout_user, login_required, current_user
 
 from psbackend import app
 from psbackend import templateutil
 from psbackend.models.user import *
 
+@app.route('/user')
+@login_required
+def user():
+    return templateutil.render('user.html', pageTitle=current_user.get_id())
 
-@app.route('/createuser', methods=['GET', 'POST'])
+@app.route('/user/create', methods=['GET', 'POST'])
 def createuser():
     if request.method == "GET":
         return templateutil.render('logincreateuser.html', pageTitle="Create User")
@@ -27,7 +31,7 @@ def createuser():
 
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/user/login', methods=['GET', 'POST'])
 def login():
     # login and validate the user...
     if request.method == "GET":
@@ -46,7 +50,7 @@ def login():
         return templateutil.render('logincreateuser.html', pageTitle="Login",
                                     wrongPassword=True)
 
-@app.route('/logout')
+@app.route('/user/logout')
 def logout():
     # logout the current user
     logout_user()
