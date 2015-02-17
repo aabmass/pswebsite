@@ -2,8 +2,8 @@
 import flask
 from flask.ext.login import current_user
 
-from . import context
-from .menus import UserMenu
+from psbackend import context
+from psbackend.menus import UserMenu
 
 ## Use this in place of flask.render_template for the project
 def render(templateName, **kwargs):

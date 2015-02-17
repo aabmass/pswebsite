@@ -1,5 +1,5 @@
 ########## Module wrapping menus and their creation ##########
-from . import context
+from psbackend import context
 
 ##
 # @brief A class wrapping the menu objects.

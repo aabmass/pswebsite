@@ -2,9 +2,9 @@
 from flask import request, flash, redirect, url_for
 from flask.ext.login import login_user, logout_user, current_user, login_required
 
-from . import app
-from . import templateutil
-from .models.user import *
+from psbackend import app
+from psbackend import templateutil
+from psbackend.models.user import *
 
 @app.route('/')
 @app.route('/index')
