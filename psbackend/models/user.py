@@ -35,7 +35,7 @@ class User(db.Model, UserMixin):
         self.passwordHash = security.generate_password_hash(password)
 
     def checkPassword(self, password):
-        security.check_password_hash(self.passwordHash, password)
+        return security.check_password_hash(self.passwordHash, password)
 
     def is_authenticated(self):
         return True

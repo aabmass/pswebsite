@@ -20,7 +20,6 @@ def about():
 def user():
     return templateutil.render('user.html', pageTitle=current_user.get_id())
 
-
 @app.route('/createuser', methods=['GET', 'POST'])
 def createuser():
     if request.method == "GET":
@@ -49,6 +48,21 @@ def login():
         return templateutil.render('logincreateuser.html', pageTitle="Login")
 
     user = loadUser(request.form["email"])
-    login_user(user)
-    flash("Logged in successfully.")
+
+    # check to see if the given password hashes right
+    # TODO: setup with forms handler
+    if user.checkPassword(request.form["password"]):
+        login_user(user)
+        flash("Logged in successfully.")
+        return redirect(request.args.get("next") or url_for("index"))
+    else:
+        flash("Logged in unsuccessfully.")
+        return templateutil.render('logincreateuser.html', pageTitle="Login",
+                                    wrongPassword=True)
+
+@app.route('/logout')
+def logout():
+    # logout the current user
+    logout_user()
+    flash("Logged out successfully")
     return redirect(request.args.get("next") or url_for("index"))
