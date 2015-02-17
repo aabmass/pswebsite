@@ -7,7 +7,7 @@
         <section>
             <h2>Login</h2>
             <div class="container 50%">
-                <form action="login" method="post">
+                <form action="{{ url_for("login") }}" method="post">
                     <div class="row uniform">
                         <div class="6u 12u$(small)">
                             <input name="email" id="email" value="" placeholder="Email" type="text">
@@ -36,7 +36,7 @@
             <h2>Create User</h2>
 
             <div class="container 50%">
-                <form action="createuser" method="post">
+                <form action="{{ url_for("createuser") }}" method="post">
                     <div class="row uniform">
                         <div class="6u 12u$(small)">
                             <input name="email" id="email" value="" placeholder="Email" type="text">
