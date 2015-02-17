@@ -18,13 +18,13 @@ loginManager = LoginManager()
 loginManager.init_app(app)
 loginManager.login_view = "login"
 
-from .models.user import User
+from psbackend.models.user import User
 
 ## Application local init
 
-from . import views
-from . import context
-from . import menus
+from psbackend.views import *
+from psbackend import context
+from psbackend import menus
 
 
 # Create the menus
