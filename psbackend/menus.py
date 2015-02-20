@@ -43,7 +43,6 @@ class Menu:
 
     @property
     def visible(self):
-        print("Menu.visible() called")
         return self._visible
     
     @visible.setter
@@ -71,7 +70,6 @@ class UserMenu(Menu):
     # Lets override visible() as a pseudo-hook
     @Menu.visible.getter
     def visible(self):
-        print("UserMenu.visible() called")
         # Change the names if we have auth
         if self.isAuthenticated():
             self.name = current_user.get_id()
