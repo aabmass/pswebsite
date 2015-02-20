@@ -1,5 +1,6 @@
 ########## Module wrapping menus and their creation ##########
 from psbackend import context
+from flask.ext.login import current_user
 
 ##
 # @brief A class wrapping the menu objects.
@@ -14,10 +15,11 @@ class Menu:
     # @param submenus Option arg: array of submenus of this menu
     #
     # @return 
-    def __init__(self, name, routeFuncName, submenus=None):
+    def __init__(self, name, routeFuncName, visible=True, submenus=[]):
         self._name = name
         self._routeFuncName = routeFuncName
         self._submenus = submenus
+        self._visible = visible
     
     def addToContext(self):
         context.projectVars["menus"].append(self)
@@ -40,6 +42,15 @@ class Menu:
         self._routeFuncName = routeFuncName
 
     @property
+    def visible(self):
+        print("Menu.visible() called")
+        return self._visible
+    
+    @visible.setter
+    def visible(self, isVis):
+        self._visible = isVis
+
+    @property
     def submenus(self):
         return self._submenus
 
@@ -48,21 +59,43 @@ class Menu:
         self._submenus = subs
 
 class UserMenu(Menu):
-    def __init__(self, name, routeFuncName, user, submenus=None):
-        super().__init__(name, routeFuncName, submenus)
-        self.user = user
-
-        # Change the names if we have auth
-        if self.isAuthenticated():
-            self.name = self.user.get_id()
-            self.routeFuncName = "user"
+    def __init__(self, name, routeFuncName, visible=True, submenus=[]):
+        self.logoutMenu = Menu("Logout", "logout", False)
+        submenus.append(self.logoutMenu)
+        super().__init__(name, routeFuncName, visible, submenus)
 
     def isAuthenticated(self):
-        return self.user.is_authenticated()
+        return current_user and \
+                current_user.is_authenticated()
+
+    # Lets override visible() as a pseudo-hook
+    @Menu.visible.getter
+    def visible(self):
+        print("UserMenu.visible() called")
+        # Change the names if we have auth
+        if self.isAuthenticated():
+            self.name = current_user.get_id()
+            self.routeFuncName = "user"
+
+            # Turn on the logout submenu
+            self.logoutMenu.visible = True
+        else:
+            self.name = "Login"
+            self.routeFuncName = "login"
+
+            # Turn off the logout submenu
+            self.logoutMenu.visible = False
+        return super().visible
+
 
 def createApplicationMenus():
     menus = context.projectVars["menus"]
 
     menus.append(Menu("Home", "index"))
     menus.append(Menu("About", "about"))
+
+    # Add the user menu
+    users = UserMenu("Login", "login")
+
+    menus.append(users)
 

@@ -3,32 +3,22 @@
     <h1><a href="{{ url_for("index") }}">{{ projVars.projectName }}</a></h1>
     <nav id="nav">
         <ul>
-            {# TODO Also iterate through submenus #}
+            {# The other menus #}
             {% for m in projVars.menus %}
-                <li><a href="{{ url_for(m.routeFuncName) }}">{{ m.name }}</a>
-                {% if m.submenus %}
-                    <ul>
-                        {% for subm in m.submenus %}
-                            <li><a href="{{ url_for(subm.routeFuncName) }}">{{ subm.name }}</a></li>
-                        {% endfor %}
-                    </ul>
+                {% if m.visible %}
+                    <li><a href="{{ url_for(m.routeFuncName) }}">{{ m.name }}</a>
+                    {% if m.submenus %}
+                        <ul>
+                            {% for subm in m.submenus %}
+                                {% if subm.visible %}
+                                <li><a href="{{ url_for(subm.routeFuncName) }}">{{ subm.name }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    </li>
                 {% endif %}
-                </li>
             {% endfor %}
-            
-
-            {# User Menu #}
-            {% if userMenu %}
-                <li><a href="{{ url_for(userMenu.routeFuncName) }}">{{ userMenu.name }}</a>
-                {% if userMenu.submenus %}
-                    <ul>
-                        {% for subm in userMenu.submenus %}
-                            <li><a href="{{ url_for(subm.routeFuncName) }}">{{ subm.name }}</a></li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-                </li>
-            {% endif %}
         </ul>
     </nav>
 </header>
