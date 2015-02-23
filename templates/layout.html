@@ -14,5 +14,15 @@
     {% block content %}{% endblock %}
 
     {% include "footer.html" %}
+
+    {# Include extra javascript here #}
+    {% block jsIncludes %}
+        {% for jsFile in extraJsFiles %}
+            <script src="{{ url_for('static', filename=jsFile) }}"></script>
+        {% endfor %}
+    {% endblock %}
+
+    {# Put any inline JS here #}
+    {% block inlineJS %}{% endblock %}
     </body>
 </html>

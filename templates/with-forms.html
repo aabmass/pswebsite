@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+
+{% block jsIncludes %}
+    <script src="{{ url_for('static', filename="js/parsley.remote.min.js") }}"></script>
+    <script src="{{ url_for('static', filename="js/parsley.min.js") }}"></script>
+    {{ super() }}
+{% endblock %}
