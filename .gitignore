@@ -3,4 +3,4 @@
 *.pyc
 *__pycache__/
 
-enviroment.sh
+environment.sh
