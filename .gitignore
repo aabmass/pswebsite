@@ -4,4 +4,4 @@
 *__pycache__/
 
 # Our conf file
-config.py
+psbackend/config.py
