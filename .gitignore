@@ -3,4 +3,5 @@
 *.pyc
 *__pycache__/
 
-environment.sh
+# Our conf file
+config.py
