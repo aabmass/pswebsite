@@ -56,3 +56,9 @@ class User(db.Model, UserMixin):
 @loginManager.user_loader
 def loadUser(email):
     return User.query.get(email)
+
+# Just checks if there is not a user with this email yet
+# Does NOT do any validation of email
+def emailIsAvailable(email):
+    # If the query returns None (no user exists yet)
+    return User.query.get(email) is None
