@@ -1220,6 +1220,6 @@
 		}
 
         /* Added css for posterscores */
-        p.error {
+        .error {
             color: red;
         }
