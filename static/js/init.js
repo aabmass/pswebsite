@@ -76,8 +76,12 @@
 		var	$window = $(window),
 			$body = $('body');
 
-		// Disable animations/transitions until the page has loaded.
-			$body.addClass('is-loading');
+            // Disable animations/transitions until the page has loaded.
+            $body.addClass('is-loading');
+
+            $('#nav > ul').dropotron({
+                offsetX: 100 //move submenus over by offsetX
+            });
 
 			$window.on('load', function() {
 				$body.removeClass('is-loading');

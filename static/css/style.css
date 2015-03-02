@@ -1189,37 +1189,75 @@
 			cursor: pointer;
 		}
 
-/* Grid Demo */
+        /* Grid Demo */
 
-	.grid-demo {
-		display: block;
-		margin: 0 0 2em 0;
-	}
+        .grid-demo {
+            display: block;
+            margin: 0 0 2em 0;
+        }
 
-		.grid-demo span {
-			background: #8d93a0;
-			border-radius: 4px;
-			color: rgba(0, 0, 0, 0.25);
-			display: block;
-			font-weight: 700;
-			height: 2.75em;
-			line-height: 2.75em;
-			text-align: center;
-		}
+        .grid-demo span {
+            background: #8d93a0;
+            border-radius: 4px;
+            color: rgba(0, 0, 0, 0.25);
+            display: block;
+            font-weight: 700;
+            height: 2.75em;
+            line-height: 2.75em;
+            text-align: center;
+        }
 
-		.grid-demo .row.flush > div span {
-			border-radius: 0;
-		}
+        .grid-demo .row.flush > div span {
+            border-radius: 0;
+        }
 
-		.grid-demo .row.flush > div:first-child span {
-			border-radius: 4px 0 0 4px;
-		}
+        .grid-demo .row.flush > div:first-child span {
+            border-radius: 4px 0 0 4px;
+        }
 
-		.grid-demo .row.flush > div:last-child span {
-			border-radius: 0 4px 4px 0;
-		}
+        .grid-demo .row.flush > div:last-child span {
+            border-radius: 0 4px 4px 0;
+        }
 
         /* Added css for posterscores */
         .error {
             color: red;
+        }
+
+        .dropotron {
+            background: #383B43;
+            list-style: none;
+            margin: 0;
+            min-width: 10em;
+            padding: 0.75em 1em 0.75em 1em;
+
+            -webkit-border-bottom-right-radius: 5px;
+            -webkit-border-bottom-left-radius: 5px;
+            -moz-border-radius-bottomright: 5px;
+            -moz-border-radius-bottomleft: 5px;
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+        .dropotron > li {
+            border-top: solid 1px #555;
+            margin: 0;
+            padding: 0;
+        }
+        .dropotron > li:first-child { border-top: 0 }
+        .dropotron > li > a {
+            color: #ccc;
+            display: block;
+            padding: 0.5em 0 0.5em 0;
+            text-decoration: none;
+        }
+        .dropotron > li.active > a,
+        .dropotron > li:hover > a { color: #fff }
+        .dropotron.level-0 { margin-top: 1.25em }
+        .dropotron.level-0:before {
+            content: '';
+            position: absolute;
+            border-bottom: solid 0.5em #383B43;
+            border-left: solid 0.5em transparent;
+            border-right: solid 0.5em transparent;
+            top: -0.40em;
         }
