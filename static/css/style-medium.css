@@ -130,3 +130,13 @@
 	#footer .icons {
 		text-align: center;
 	}
+
+/* Dropotron mobile menu config */
+    .submenu {
+        list-style: circle inside !important;
+    }
+
+    .submenu > li {
+        position: relative !important;
+        left: 0.5em !important;
+    }
