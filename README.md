@@ -3,7 +3,7 @@ PS Website
 
 Dependencies
 ------------
-* Python 3
+* Python 3  
   Install python dependencies with `pip` (or `pip3` depending on the OS):
 
   ```bash
@@ -15,7 +15,7 @@ Dependencies
 
 Setup
 -------
-* You need a database user with all permissions on some database.
+* You need a database user with all permissions on some database.  
   To make a new user (`newuser`, with `password`) and database (`newdb`) in MySQL:
     
   ```SQL
@@ -25,13 +25,13 @@ Setup
   FLUSH PRIVILEGES;
   ```
 
-* Create a config file.
+* Create a config file.  
   There is a shipped sample config file, `config.sample.py`. Copy this file into `psbackend` folder and modify it with your database credentials. Unless you're deploying, you probably want to use the debug environment.
 
-* Create the tables
+* Create the tables  
   Run the script: `./script/createall.py`
 
-* Potential admin creation details here
+* Potential admin creation details here  
 
 Run (dev)
 ------
