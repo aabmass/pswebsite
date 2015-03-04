@@ -1220,7 +1220,7 @@
         }
 
         /* Added css for posterscores */
-        .error {
+        .error, .parsley-errors-list {
             color: red;
         }
 
