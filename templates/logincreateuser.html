@@ -6,14 +6,14 @@
         <section>
             <h2>Login</h2>
             <div class="container 50%">
-                <form class="parsley-form" action="{{ url_for("login") }}" method="post">
+                <form class="parsley-form" id="loginForm" action="{{ url_for("login") }}" method="post">
                     <div class="row uniform">
                         <div class="6u 12u$(small)">
                             <input name="email" placeholder="Email Address"
                                 type="email" data-parsley-trigger="change" required>
                         </div>
                         <div class="6u$ 12u$(small)">
-                            <input name="password" id="password" placeholder="Password"
+                            <input name="password" placeholder="Password"
                                 type="password" required>
                         </div>
                         <div class="12u$">
@@ -42,24 +42,26 @@
         <section>
             <h2>Register</h2>
             <div class="container 50%">
-                <form class="parsley-form" action="{{ url_for("register") }}" method="post">
+                <form class="parsley-form" id="registerForm" action="{{ url_for("register") }}" method="post">
                     <div class="row uniform">
                         <div class="12u">
                             <input name="email" placeholder="Email Address" type="email" 
-                            data-parsley-trigger="change" data-parsley-remote="{{ url_for("validnewuser") }}" required>
+                            data-parsley-trigger="change" data-parsley-remote="{{ url_for("validnewuser") }}"
+                            data-parsley-remote-message="This email has already been registered." required>
                         </div>
                         <div class="6u 12u$(small)">
-                            <input name="firstName" id="firstName" value="" placeholder="First Name" type="text" required>
+                            <input name="firstName" value="" placeholder="First Name" type="text" required>
                         </div>
                         <div class="6u$ 12u$(small)">
-                            <input name="lastName" id="lastName" value="" placeholder="Last Name" type="text" required>
+                            <input name="lastName" value="" placeholder="Last Name" type="text" required>
                         </div>
                         <div class="6u 12u$(small)">
-                            <input name="password" id="password" value="" placeholder="Password" type="password" required>
+                            <input name="password" value="" placeholder="Password" type="password" required>
                         </div>
                         <div class="6u$ 12u$(small)">
-                            <input name="confirm" id="confirmpassword" value="" placeholder="Confirm Password"
-                            type="password" required>
+                            <input name="confirm" value="" placeholder="Confirm Password"
+                            type="password" data-parsley-equalto="#registerForm input[name=password]" 
+                            data-parsley-equalto-message="Passwords don't match." required>
                         </div>
                         <div class="12u$">
                             <ul class="actions">
