@@ -76,13 +76,28 @@
 		var	$window = $(window),
 			$body = $('body');
 
-		// Disable animations/transitions until the page has loaded.
-			$body.addClass('is-loading');
+            // Disable animations/transitions until the page has loaded.
+            $body.addClass('is-loading');
 
 			$window.on('load', function() {
 				$body.removeClass('is-loading');
 			});
 
+            var startDropotron = function() {
+                $("#nav > ul").dropotron({
+                    baseZIndex:         10005,
+                    alignment:          'right'
+                });
+            }
+            
+            // Start dropotron when medium
+            skel.on('!medium', startDropotron);
+            skel.on('-medium', startDropotron);
+
+            // When resized to mobile
+            skel.on('+medium', function() {
+                //TODO: Code to stop dropotron here
+            });
 	});
 
 })(jQuery);

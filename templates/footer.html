@@ -71,10 +71,4 @@
             </div>
         </div>
     </div>
-
-    {# Include extra javascript here #}
-    {% for jsFile in extraJsFiles %}
-    <script src="{{ url_for('static', filename=jsFile) }}"></script>
-    {% endfor %}
-
 </footer>

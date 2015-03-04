@@ -3,3 +3,5 @@
 *.pyc
 *__pycache__/
 
+# Our conf file
+psbackend/config.py

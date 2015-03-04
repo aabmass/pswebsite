@@ -57,6 +57,19 @@ class Menu:
     def submenus(self, subs):
         self._submenus = subs
 
+    def displaySubmenus(self):
+        """ Boolean of whether or not to render the submenu at all
+            Checks that there is at least one visible submenu
+        """
+        if self._submenus:
+            for m in self._submenus:
+                if m.visible:
+                    return True
+
+        return False
+
+
+
 class UserMenu(Menu):
     def __init__(self, name, routeFuncName, visible=True, submenus=[]):
         self.logoutMenu = Menu("Logout", "logout", False)

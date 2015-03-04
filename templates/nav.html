@@ -7,12 +7,10 @@
             {% for m in projVars.menus %}
                 {% if m.visible %}
                     <li><a href="{{ url_for(m.routeFuncName) }}">{{ m.name }}</a>
-                    {% if m.submenus %}
-                        <ul>
+                    {% if m.displaySubmenus() %}
+                        <ul class="submenu">
                             {% for subm in m.submenus %}
-                                {% if subm.visible %}
                                 <li><a href="{{ url_for(subm.routeFuncName) }}">{{ subm.name }}</a></li>
-                                {% endif %}
                             {% endfor %}
                         </ul>
                     {% endif %}
