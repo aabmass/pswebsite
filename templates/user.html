@@ -12,7 +12,7 @@
 
         <h2>Information</h2>
         <ul>
-            <li>You registered on {{ current_user.registeredOn }}.</li>
+            <li>You registered on {{ current_user.registeredOn.strftime('%b %e, at %l:%M %p') }}.</li>
         </ul>
         <p>TODO: Add more details here</p>
     </section>
