@@ -98,15 +98,19 @@ class UserMenu(Menu):
             self.logoutMenu.visible = False
         return super().visible
 
+class AdminMenu(Menu):
+    def __init__(self, name, routeFuncName, visible=False, submenus=None):
+        super().__init__(name, routeFuncName, visible, submenus)
+
+    @Menu.visible.getter
+    def visible(self):
+        return current_user.isAdmin
 
 def createApplicationMenus():
     menus = context.projectVars["menus"]
 
     menus.append(Menu("Home", "index"))
     menus.append(Menu("About", "about"))
-
-    # Add the user menu
-    users = UserMenu("Login", "login")
-
-    menus.append(users)
+    menus.append(UserMenu("Login", "login"))
+    menus.append(AdminMenu("Admin", "admin"))
 

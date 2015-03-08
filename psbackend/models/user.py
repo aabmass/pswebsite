@@ -29,6 +29,9 @@ class User(db.Model, UserMixin):
         self.setPassword(password)
         self.isAdmin = isAdmin
 
+    def __str__(self):
+        return self.email
+
     ##
     # @brief Use this setter/getter; it salts properly!
     #
