@@ -17,16 +17,21 @@ class User(db.Model, PSModel, UserMixin):
 
 
     # User information
+    isAdmin = db.Column(db.Boolean(), nullable=False, default=False)
     isEnabled = db.Column(db.Boolean(), nullable=False, default=True)
     firstName = db.Column(db.String(50), nullable=False, default='')
     lastName = db.Column(db.String(50), nullable=False, default='')
     registeredOn = db.Column(db.DateTime, nullable=False, default=datetime.datetime.now())
 
-    def __init__(self, email, password, firstName, lastName):
+    def __init__(self, email, password, firstName, lastName, isAdmin=False):
         self.email = email
         self.firstName = firstName
         self.lastName = lastName
         self.setPassword(password)
+        self.isAdmin = isAdmin
+
+    def __str__(self):
+        return self.email
 
     ##
     # @brief Use this setter/getter; it salts properly!

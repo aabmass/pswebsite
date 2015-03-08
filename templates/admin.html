@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<!-- Main -->
+<section id="main" class="wrapper">
+    <div class="container">
+        <header class="major">
+            <h2>Admin</h2>
+        </header>
+    </div>
+
+    <div class="container">
+    {% for mod in models %}
+        <h3>{{mod.__tablename__ }}</h3>
+        {% for entry in mod.query.all() %}
+            <p>{{ entry }}</p>
+        {% endfor %}
+    {% endfor %}
+    </div>
+</section>
+{% endblock %}
