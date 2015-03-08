@@ -2,8 +2,6 @@ from wtforms import Form, BooleanField, StringField, PasswordField, validators
 
 from psbackend.forms import customvalidators
 
-from wtforms import Form, BooleanField, TextField, PasswordField, validators
-
 class RegisterForm(Form):
     email = StringField('Email Address', [
         validators.Email("Not a valid Email Address"),
