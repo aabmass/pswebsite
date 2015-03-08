@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+<section id="main" class="wrapper">
+    <div class="container">
+        <header class="major">
+            <h2>{{ product.name }}</h2>
+            <p>{{ product.desc }}</p>
+        </header>
+
+        {# A row for the description and image #}
+        <div class="row">
+            <div class="6u">
+                Some stuff about the product
+            </div>
+            <div class="6u$">
+                <p>TODO: Image will go here...</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

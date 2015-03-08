@@ -25,8 +25,6 @@ loginManager = LoginManager()
 loginManager.init_app(app)
 loginManager.login_view = "login"
 
-from psbackend.models.user import User
-
 ## Application local init
 
 from psbackend.views import *

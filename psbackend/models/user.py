@@ -1,12 +1,13 @@
 from flask.ext.login import UserMixin
 from werkzeug import security
 
-from psbackend import db
 from psbackend import loginManager
+from psbackend import db
+from psbackend.models.psmodel import PSModel
 
 import datetime
 
-class User(db.Model, UserMixin):
+class User(db.Model, PSModel, UserMixin):
     # User Email information
     email = db.Column(db.String(255), nullable=False, unique=True, primary_key=True)
 
@@ -48,10 +49,6 @@ class User(db.Model, UserMixin):
 
     def get_id(self):
         return str(self.email)
-
-    def save(self):
-        db.session.add(self)
-        db.session.commit()
 
 @loginManager.user_loader
 def loadUser(email):
