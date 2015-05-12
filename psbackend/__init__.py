@@ -2,7 +2,7 @@ from flask import Flask
 from flask.ext.login import LoginManager
 from flask.ext.sqlalchemy import SQLAlchemy
 
-import os, sys
+import sys
 
 try:
     from psbackend import config
@@ -25,7 +25,7 @@ loginManager = LoginManager()
 loginManager.init_app(app)
 loginManager.login_view = "login"
 
-from psbackend.models.user import User
+from psbackend.models import *
 
 ## Application local init
 
